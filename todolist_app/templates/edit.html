@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Edit Task Taskmate</title>
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if task_obj.manage == request.user%}  <!--ders 61 güvenlik sorunu ile ilgili-->   
+    <!--yukarıdaki if koşulu ile adres çubuğundan girişi engelliyoruz..sadece o an kullanıcı tuşlar ile-->   
+    <form method="POST" class="row">
+        {% csrf_token %}  <!--form güvenliği için gerekli-->   
+        <input type="text" class="form-control col-lg-6" name="task" placeholder="{{task_obj.task}}" value="{{task_obj.task}}">
+        <input type="hidden"  name="done"  value="{{task_obj.done}}"><!-- bunu yaparak -->  
+        <!-- done nin defoult olan folse değerini o anki değerini tekrar atıyoruz-->  
+        <!--yani edit edildiğinde bitmiş bir iş tekrar bitmemiş durumunu gelmemesi için-->  
+        <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+    </form>
+    {% else %}
+    <p>Acces Restricted, You Are Not allowed!</p>
+    {% endif %}
+ </div>
+{% endblock content %}
