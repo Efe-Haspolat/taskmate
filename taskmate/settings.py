@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 #import django_heroku
+import django_heroku
 import os
 import environ # DERS 69
 
@@ -130,6 +131,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
@@ -141,7 +143,11 @@ LOGIN_REDIRECT_URL = "todolist" # login için burayı ekledik
 LOGIN_URL = "login" # login için burayı ekledik.şimdi ToDo list kısmına basınca gitmiyor
 #todolist.html açılmıyor.login olduktan sonra girebileceğiz
 
+django_heroku.settings(locals())
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
